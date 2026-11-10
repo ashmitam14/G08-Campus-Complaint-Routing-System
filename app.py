@@ -21,7 +21,7 @@ print("MAINTENANCE USER:", os.getenv("MAINTENANCE_USERNAME"))
 print("PASSWORD LOADED:", bool(os.getenv("MAINTENANCE_PASSWORD")))
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="public", static_url_path="")
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "CHANGE_THIS_SECRET_BEFORE_DEPLOYMENT")
 BASE_DIR = Path(__file__).resolve().parent
 DB_NAME = os.environ.get("DATABASE_PATH", str(BASE_DIR / "complaints.db"))
@@ -34,6 +34,8 @@ ADMIN_USERNAME = os.environ.get("CAMPUS_ADMIN_USERNAME", "admin")
 ADMIN_PASSWORD = os.environ.get("CAMPUS_ADMIN_PASSWORD", "")
 MAINTENANCE_USERNAME = os.environ.get("MAINTENANCE_USERNAME", "maintenance")
 MAINTENANCE_PASSWORD = os.environ.get("MAINTENANCE_PASSWORD", "")
+print("FLASK MAINTENANCE USER:", repr(MAINTENANCE_USERNAME))
+print("FLASK PASSWORD LOADED:", bool(MAINTENANCE_PASSWORD))
 
 # Set these environment variables to enable email notifications.
 SMTP_HOST = os.environ.get("SMTP_HOST", "smtp.gmail.com")
